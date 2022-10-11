@@ -1,0 +1,6 @@
+.env
+**__pycache__/
+.data
+entorno_virtual/
+.vscode/
+config.py
