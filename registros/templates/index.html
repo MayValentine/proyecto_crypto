@@ -1,0 +1,40 @@
+{% extends "base.html" %}
+{% block content %}
+
+<h1>Lista de movimientos</h1>
+
+<table>
+    <thead>
+        <tr>
+          <th>Fecha</th>
+          <th>Hora</th>
+          <th>Moneda_From</th>
+          <th>Cantidad_From</th>
+          <th>Moneda_To</th>
+          <th>Cantidad_to</th>
+          <th>Precio Unitario</th>
+        
+        </tr>
+    </thead>
+  <tbody>
+      
+      {% for trades in data %}
+      <tr>
+          <td>{{ trades.date }}</td>
+          <td>{{ trades.time }}</td>
+          <td>{{ trades.moneda_from }}</td>
+          <td>{{ trades.cantidad_from }}</td>
+          <td>{{ trades.moneda_to }}</td>
+          <td class="number">{{ "%.8f" | format(trades.cantidad_to) }}</td>
+          <td class="number">{{ "%.8f" | format (trades.PU) }}</td>
+          
+      </tr>
+      {% endfor %}
+     
+  </tbody>
+</table> 
+{% if data == [] %}
+<h1 class="container">SIN MOVIMIENTOS</h1>
+{% endif %}
+
+{% endblock %}

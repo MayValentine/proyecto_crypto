@@ -1,0 +1,48 @@
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>cambio criptomonedas: {{ pageTitle }}</title>
+    <link rel="stylesheet" href="/static/css/pico.css">
+    <link rel="stylesheet" href="/static/css/styles.css">
+</head>    
+<body>
+    <header>
+        <div class="container">
+           Cambia tus monedas
+        </div>
+    </header>
+    <nav class="container">
+        <ul>
+            <li>
+                <a href="/">Inicio</a>
+            </li>
+            <li>
+                <a href="/registros/templates/purchase">Cambio</a>
+            </li>
+            <li>
+                <a href="/registros/templates/status">Estado</a>
+            </li>
+        </ul>
+    </nav>
+
+    <section class="container">
+        {% with messages = get_flashed_messages() %}
+        {% if messages %}    
+            <article class="messages">
+                {% for msg in messages %}
+                <p class="error">{{ msg }}</p>
+                {% endfor%}
+            </article>
+        {% endif %}
+        {% endwith %}
+    </section>
+
+    {% block content %}{% endblock %}
+
+    <footer>     
+        &copy; 2022 - MVW Todos los derechos reservados
+    </footer>
+</body>
+</html>
