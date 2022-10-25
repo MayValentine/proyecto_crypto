@@ -3,6 +3,7 @@ header, footer {
     color: var(--primary-inverse);
     font-size: 1.4em;
     font-weight: bold;
+    padding: 0;
 }
 
 
@@ -10,4 +11,15 @@ p.error {
     color: red;
     font-weight: bold;
     font-size: 0.9em;
+}
+
+#Calculate_Calcular {
+    margin-left: 40%;
+}
+
+body {
+    min-height: 100vh;
+    display: grid;
+    grid-template-rows: auto 50px 1fr 0 auto;
+    margin: 0;
 }

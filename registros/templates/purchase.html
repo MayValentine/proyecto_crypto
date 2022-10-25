@@ -1,0 +1,52 @@
+{% extends "base.html" %}
+{% block content %}
+
+<h1>COMPRA DE CRIPTOMONEDAS</h1>
+
+<form class = conter action="/purchase" method="post">
+    {{ formulario.csrf_token }}
+
+
+    {{ formulario.lista_from.label }}
+    {{ formulario.lista_from }}
+    {% if formulario.lista_from.errors %}
+        {% for error in formulario.lista_from.errors %}
+        <p>{{ error }}</p>
+        {% endfor %}
+    {% endif %}
+
+    {{ formulario.inputCantidad.label }}
+    {{ formulario.inputCantidad (placeholder = "Introduce la cantidad que quieres comprar")}}
+    {% if formulario.inputCantidad.errors %}
+        {% for error in formulario.inputCantidad.errors %}
+        <p>{{ error }}</p>
+        {% endfor %}
+    {% endif %}
+    
+    <a id="Calculate_Calcular" href="/purchase" data-tooltip="Pulsa para calcular el precio" data-placement="bottom">
+        <span class="material-symbols-outlined">
+        {{ formulario.Calcular }}
+        </span>
+   </a>
+    
+
+   {{ formulario.lista_to.label }}
+    {{ formulario.lista_to }}
+    {% if formulario.lista_to.errors %}
+        {% for error in formulario.lista_to.errors %}
+        <p>{{ error }}</p>
+        {% endfor %}
+    {% endif %}
+   
+   <p>Importe: {{ resultado }}</p>
+   <p>Precio Unitario: {{ Tasa }}</p>
+
+   <a id="Calculate_Calcular" href="/purchase" data-tooltip="Pulsa para hacer la compra" data-placement="bottom">
+    <span class="material-symbols-outlined">
+   {{ formulario.Cambio }}
+    </span>
+</a>
+   
+</form>
+
+{% endblock %}

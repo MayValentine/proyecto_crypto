@@ -6,26 +6,47 @@
     <title>cambio criptomonedas: {{ pageTitle }}</title>
     <link rel="stylesheet" href="/static/css/pico.css">
     <link rel="stylesheet" href="/static/css/styles.css">
-</head>    
+    <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:opsz,wght,FILL,GRAD@48,400,0,0" />
+</head>
+<header>
+    <div class="container">
+       Cambia tus monedas
+    </div>
+</header>
+
 <body>
-    <header>
-        <div class="container">
-           Cambia tus monedas
-        </div>
-    </header>
-    <nav class="container">
-        <ul>
-            <li>
-                <a href="/">Inicio</a>
-            </li>
-            <li>
-                <a href="/registros/templates/purchase">Cambio</a>
-            </li>
-            <li>
-                <a href="/registros/templates/status">Estado</a>
-            </li>
-        </ul>
-    </nav>
+    
+        <nav class="container" aria-label="breadcrumb">
+        {% if encabezado == 'index.html' %}
+            <nav>
+                <span>Inicio</span> 
+                /
+                <a href="/purchase" class="container">Compras</a>
+                /
+                <a href="/status" class = "container">Estado</a>
+            </nav>
+            {% endif %}
+        
+            {% if encabezado == 'purchase.html' %}
+            <nav>
+                <a href="/" class = "container">Inicio</a>
+                /
+                <span>Compras</span>
+                /
+                <a href="/status" class = "container">Estado</a>
+            </nav>
+            {% endif %}
+        
+            {% if encabezado == 'status.html' %}
+            <nav>
+                <a href="/" class = "container">Inicio</a>
+                /
+                <a href="/purchase" class="container">Compras</a>
+                /
+                <span>Estado</span>
+            </nav>
+            {% endif %}
+        </nav>
 
     <section class="container">
         {% with messages = get_flashed_messages() %}
@@ -37,9 +58,11 @@
             </article>
         {% endif %}
         {% endwith %}
-    </section>
+    
 
     {% block content %}{% endblock %}
+
+    </section>
 
     <footer>     
         &copy; 2022 - MVW Todos los derechos reservados
