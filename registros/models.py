@@ -1,4 +1,3 @@
-from config import ORIGIN_DATA
 import sqlite3
 from wtforms import HiddenField
 import requests
@@ -72,7 +71,7 @@ def traerTodasCartera(crypto):
     conn= sqlite3.connect(ORIGIN_DATA)
     cur = conn.cursor()
     for moneda in crypto:
-        consulta = f"SELECT ((SELECT (case when (SUM(cantidad_to)) is null then 0 else SUM(cantidad_to) end) as tot FROM trades WHERE moneda_to = '{moneda}') - (SELECT (case when (SUM(cantidad_from))) is null then 0 else SUM(cantidad_from) end) as ee FROM trades WHERE moneda_from = '{moneda}')) AS {moneda}"
+        consulta = f"SELECT ((SELECT (case when (SUM(cantidad_to)) is null then 0 else SUM(cantidad_to) end) as tot FROM trades WHERE moneda_to = '{moneda}') - (SELECT (case when (SUM(cantidad_from)) is null then 0 else SUM(cantidad_from) end) as ee FROM trades WHERE moneda_from = '{moneda}')) AS {moneda}"
         cur.execute(consulta)
         fila =cur.fetchall() 
         cryptosMonedas[moneda] = fila[0][0]
@@ -82,7 +81,7 @@ def traerTodasCartera(crypto):
 
 def totalActivo_una_consulta():    
     total = 0
-    monederoActual = traerTodasCartera(crypto)
+    monederoActual = traerTodasCartera(cryptos)
     url = requests.get(f"https://rest.coinapi.io/v1/exchangerate/EUR?&apikey={apikey}")
     resultado = url.json()
 

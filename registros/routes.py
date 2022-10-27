@@ -1,7 +1,7 @@
 from registros import app
 from flask import render_template, flash, request, url_for, redirect
 import sqlite3
-from registros.models import select_all, peticion_crypto, validador, insert
+from registros.models import select_all, peticion_crypto, validador, insert, totalActivo_una_consulta, invertido,recuperado
 from registros.forms import Moneda
 from wtforms import HiddenField
 from config import apikey
@@ -77,8 +77,24 @@ def purchase():
             return redirect(url_for("index"))
    
         
-"""
 @app.route("/status")
 def status():
-       
-"""
+    invest = invertido()
+    if invest[0]['cantidad_from'] == None:
+        flash("No hay ninguna compra realizada")
+        return render_template("status.html", inv = [{'cantidad_from': 0}], rec = [{'cantidad_to': 0}], vComp = 0, vAct = 0, ganancia = 0, encabezado = 'status.html')
+        
+    else:
+        
+        try:
+            inv = invertido()
+            rec = recuperado()
+            vCompra = inv[0]['cantidad_from'] - rec[0]['cantidad_to']
+            vActivo = totalActivo_una_consulta()
+
+
+            return render_template("status.html", inv = inv, rec = rec, vComp = vCompra , vAct = vActivo, ganancia = vActivo - vCompra, encabezado = 'status.html')
+        except Exception as e:
+            print(e)
+            flash("Error de cálculo, inténtelo de nuevo más tarde")
+            return redirect(url_for('index'))

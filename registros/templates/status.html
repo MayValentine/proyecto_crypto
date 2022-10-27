@@ -1,0 +1,33 @@
+{% extends "base.html" %}
+{% block content %}
+
+<h1>ESTADO DE LA INVERSIÓN EN EUROS</h1>
+{% for valor in inv %}
+<p>Invertido: {{ "%.8f" | format (valor.cantidad_from) }}</p>
+{% endfor %}
+{% for valor in rec %}
+<p>Recuperado: {{ "%.8f" | format (valor.cantidad_to) }}</p>
+{% endfor %}
+
+
+<p>Valor de compra: {{ "%.8f" | format (vComp) }}</p>
+
+<p>Valor actual: {{ "%.8f" | format (vAct) }}</p>
+
+{% if ganancia > 0 %}
+
+<p> Beneficio: <span id = ganancia>{{ "%.8f" | format (ganancia) }}</span></p>
+
+{% elif ganancia == 0 %}
+<p> Beneficio: <span id = igual>{{ "%.8f" | format (ganancia) }}</span></p>
+
+{% else %}
+<p> Beneficio: <span id = perdida>{{ "%.8f" | format (ganancia) }}</span></p>
+
+
+{% endif %}
+
+
+<a href="/" data-tooltip="Pulsa para ir a la página de inicio" data-placement="bottom">Volver</a>
+
+{% endblock %}

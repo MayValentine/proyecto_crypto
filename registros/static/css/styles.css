@@ -23,3 +23,16 @@ body {
     grid-template-rows: auto 50px 1fr 0 auto;
     margin: 0;
 }
+
+ #ganancia {
+    color: green;
+ }
+
+ #perdida {
+    color: red;
+ }
+
+ #enunciado {
+    text-align: center;
+    font-size: 2.5em;
+ }
